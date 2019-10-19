@@ -3,5 +3,4 @@
 Sistema de controle de alunos para academias.
 
 ## Features
-
-### Cadastro de Alunos
+Em breve mais detalhes sobre o projeto
