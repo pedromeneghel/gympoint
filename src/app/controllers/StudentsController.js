@@ -6,7 +6,7 @@ class StudentsController {
     const { page = 1 } = req.query;
 
     const schema = Yup.object().shape({
-      page: Yup.number(),
+      page: Yup.number().integer(),
     });
 
     if (!(await schema.isValid(req.query))) {
