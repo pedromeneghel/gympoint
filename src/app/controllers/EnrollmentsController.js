@@ -1,12 +1,15 @@
 import * as Yup from 'yup';
-import { addMonths } from 'date-fns';
+import { addMonths, parseISO } from 'date-fns';
 import Enrollment from '../models/Enrollment';
 import Plan from '../models/Plan';
 import Student from '../models/Student';
 
+import EnrollmentMail from '../jobs/EnrollmentMail';
+import Queue from '../../lib/Queue';
+
 class EnrollmentsController {
   async destroy(req, res) {
-    const { idEnrollment } = req.param;
+    const { idEnrollment } = req.params;
 
     const schema = Yup.object().shape({
       idEnrollment: Yup.number(),
@@ -46,7 +49,7 @@ class EnrollmentsController {
         {
           model: Student,
           as: 'student',
-          attributes: ['id', 'name'],
+          attributes: ['id', 'name', 'email'],
         },
         {
           model: Plan,
@@ -59,7 +62,7 @@ class EnrollmentsController {
   }
 
   async show(req, res) {
-    const { idEnrollment } = req.param;
+    const { idEnrollment } = req.params;
 
     const schema = Yup.object().shape({
       idEnrollment: Yup.number(),
@@ -105,7 +108,7 @@ class EnrollmentsController {
       start_date: Yup.date().required(),
     });
 
-    if (!(await schema.isValid())) {
+    if (!(await schema.isValid(req.body))) {
       return res.status(400).json({ error: 'Validation fails.' });
     }
 
@@ -118,7 +121,7 @@ class EnrollmentsController {
     /**
      * Calculating plan end date
      */
-    const endDate = addMonths(startDate, plan.duration);
+    const endDate = addMonths(parseISO(startDate), plan.duration);
 
     /**
      * Calculating enrollment price
@@ -138,6 +141,30 @@ class EnrollmentsController {
       start_date: startDate,
       end_date: endDate,
       price: pricePlan,
+    });
+
+    /**
+     * Sending notification mail
+     */
+
+    const enrollment = await Enrollment.findByPk(id, {
+      attributes: ['id', 'start_date', 'end_date', 'price'],
+      include: [
+        {
+          model: Student,
+          as: 'student',
+          attributes: ['id', 'name', 'email'],
+        },
+        {
+          model: Plan,
+          as: 'plan',
+          attributes: ['id', 'title'],
+        },
+      ],
+    });
+
+    await Queue.add(EnrollmentMail.key, {
+      enrollment,
     });
 
     return res.json({
@@ -169,7 +196,7 @@ class EnrollmentsController {
       start_date: Yup.date().required(),
     });
 
-    if (!(await schema.isValid())) {
+    if (!(await schema.isValid(req.body))) {
       return res.status(400).json({ error: 'Validation fails.' });
     }
 
@@ -179,7 +206,7 @@ class EnrollmentsController {
         .required(),
     });
 
-    if (!(await schemaEnrollment.isValid())) {
+    if (!(await schemaEnrollment.isValid(req.params))) {
       return res.status(400).json({ error: 'Validation fails.' });
     }
 
@@ -192,7 +219,7 @@ class EnrollmentsController {
     /**
      * Calculating plan end date
      */
-    const endDate = addMonths(startDate, plan.duration);
+    const endDate = addMonths(parseISO(startDate), plan.duration);
 
     /**
      * Calculating enrollment price

@@ -4,6 +4,7 @@ import { Router } from 'express';
 import authMiddleware from './app/middlewares/auth';
 
 // Import Controllers
+import EnrollmentsController from './app/controllers/EnrollmentsController';
 import PlansController from './app/controllers/PlansController';
 import StudentsController from './app/controllers/StudentsController';
 import SessionController from './app/controllers/SessionController';
@@ -17,6 +18,13 @@ routes.post('/sessions', SessionController.store);
 
 // Middleware Global
 routes.use(authMiddleware);
+
+// Enrollment
+routes.get('/enrollment', EnrollmentsController.index);
+routes.get('/enrollment/:idEnrollment', EnrollmentsController.show);
+routes.post('/enrollment', EnrollmentsController.store);
+routes.put('/enrollment/:idEnrollment', EnrollmentsController.update);
+routes.delete('/enrollment/:idEnrollment', EnrollmentsController.destroy);
 
 // Students
 routes.get('/students', StudentsController.index);
