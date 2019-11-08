@@ -17,10 +17,10 @@ Obs.: Essa funcionalidade é para administradores autenticados na aplicação.
 Obs.: Essa funcionalidade é para administradores autenticados na aplicação.
 
 ### Checkins
-- [ ] Quando o aluno chega na academia o mesmo realiza um check-in apenas informando seu ID de cadastro (ID do banco de dados);
-- [ ] Esse check-in serve para monitorar quantas vezes o usuário frequentou a academia na semana.
-- [ ] O usuário só pode fazer 5 checkins dentro de um período de 7 dias corridos.
-- [ ] Crie uma rota para listagem de todos checkins realizados por um usuário com base em seu ID de cadastro;
+- [x] Quando o aluno chega na academia o mesmo realiza um check-in apenas informando seu ID de cadastro (ID do banco de dados);
+- [x] Esse check-in serve para monitorar quantas vezes o usuário frequentou a academia na semana.
+- [x] O usuário só pode fazer 5 checkins dentro de um período de 7 dias corridos.
+- [x] Crie uma rota para listagem de todos checkins realizados por um usuário com base em seu ID de cadastro;
 
 ### Pedidos de auxílio
 - [ ] O aluno pode criar pedidos de auxílio para a academia em relação a algum exercício, alimentação ou instrução qualquer;
