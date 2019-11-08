@@ -12,7 +12,7 @@ Obs.: Essa funcionalidade é para administradores autenticados na aplicação.
 - [x] Apesar do aluno estar cadastrado na plataforma, isso não significa que o mesmo tem uma matrícula ativa e que pode acessar a academia. Nessa funcionalidade deverá ser criado um cadastro de matrículas por aluno
 - [x] A data de início da matrícula deve ser escolhida pelo usuário.
 - [x] A data de término e preço da matrícula deve ser calculada com base no plano selecionado.
-- [ ] Quando um aluno realiza uma matrícula ele recebe um e-mail com detalhes da sua inscrição na academia como plano, data de término, valor e uma mensagem de boas-vidas.
+- [x] Quando um aluno realiza uma matrícula ele recebe um e-mail com detalhes da sua inscrição na academia como plano, data de término, valor e uma mensagem de boas-vidas.
 
 Obs.: Essa funcionalidade é para administradores autenticados na aplicação.
 

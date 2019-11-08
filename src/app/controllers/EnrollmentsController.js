@@ -1,5 +1,6 @@
 import * as Yup from 'yup';
 import { addMonths, parseISO } from 'date-fns';
+import { Op } from 'sequelize';
 import Enrollment from '../models/Enrollment';
 import Plan from '../models/Plan';
 import Student from '../models/Student';
@@ -116,6 +117,24 @@ class EnrollmentsController {
 
     if (!plan) {
       return res.status(400).json({ error: 'Plan not found.' });
+    }
+
+    /**
+     * Checking if the student don't have active enrollment
+     */
+    const activeEnrollment = await Enrollment.findAll({
+      where: {
+        student_id: studentId,
+        end_date: {
+          [Op.gte]: parseISO(startDate),
+        },
+      },
+    });
+
+    if (activeEnrollment.length > 0) {
+      return res
+        .status(400)
+        .json({ error: 'The student is already enrolled in another plan.' });
     }
 
     /**
