@@ -2,15 +2,17 @@ import Sequelize from 'sequelize';
 import mongoose from 'mongoose';
 
 // Import models
+import Checkin from '../app/models/Checkin';
 import Enrollment from '../app/models/Enrollment';
 import Plan from '../app/models/Plan';
 import Student from '../app/models/Student';
 import User from '../app/models/User';
+
 // Import config
 import databseConfig from '../config/database';
 
 // Create array of models
-const models = [Enrollment, Plan, Student, User];
+const models = [Checkin, Enrollment, Plan, Student, User];
 
 class Database {
   constructor() {

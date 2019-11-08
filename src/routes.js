@@ -4,6 +4,7 @@ import { Router } from 'express';
 import authMiddleware from './app/middlewares/auth';
 
 // Import Controllers
+import CheckinsController from './app/controllers/CheckinsController';
 import EnrollmentsController from './app/controllers/EnrollmentsController';
 import PlansController from './app/controllers/PlansController';
 import StudentsController from './app/controllers/StudentsController';
@@ -16,10 +17,14 @@ const routes = new Router();
 // Session
 routes.post('/sessions', SessionController.store);
 
+// Checkins
+routes.post('/students/:idStudent/checkins', CheckinsController.store);
+routes.get('/students/:idStudent/checkins', CheckinsController.index);
+
 // Middleware Global
 routes.use(authMiddleware);
 
-// Enrollment
+// Enrollments
 routes.get('/enrollment', EnrollmentsController.index);
 routes.get('/enrollment/:idEnrollment', EnrollmentsController.show);
 routes.post('/enrollment', EnrollmentsController.store);
