@@ -23,9 +23,9 @@ Obs.: Essa funcionalidade é para administradores autenticados na aplicação.
 - [x] Crie uma rota para listagem de todos checkins realizados por um usuário com base em seu ID de cadastro;
 
 ### Pedidos de auxílio
-- [ ] O aluno pode criar pedidos de auxílio para a academia em relação a algum exercício, alimentação ou instrução qualquer;
-- [ ] Crie uma rota para a academia listar todos pedidos de auxílio sem resposta;
-- [ ] Crie uma rota para o aluno cadastrar pedidos de auxílio apenas informando seu ID de cadastro (ID do banco de dados);
-- [ ] Crie uma rota para listar todos pedidos de auxílio de um usuário com base em seu ID de cadastro;
-- [ ] Crie uma rota para a academia responder um pedido de auxílio:
-- [ ] Quando um pedido de auxílio for respondido, o aluno deve receber um e-mail da plataforma com a pergunta e resposta da academia;
+- [x] O aluno pode criar pedidos de auxílio para a academia em relação a algum exercício, alimentação ou instrução qualquer;
+- [x] Crie uma rota para a academia listar todos pedidos de auxílio sem resposta;
+- [x] Crie uma rota para o aluno cadastrar pedidos de auxílio apenas informando seu ID de cadastro (ID do banco de dados);
+- [x] Crie uma rota para listar todos pedidos de auxílio de um usuário com base em seu ID de cadastro;
+- [x] Crie uma rota para a academia responder um pedido de auxílio:
+- [x] Quando um pedido de auxílio for respondido, o aluno deve receber um e-mail da plataforma com a pergunta e resposta da academia;

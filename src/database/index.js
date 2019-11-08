@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 // Import models
 import Checkin from '../app/models/Checkin';
 import Enrollment from '../app/models/Enrollment';
+import HelpOrder from '../app/models/HelpOrder';
 import Plan from '../app/models/Plan';
 import Student from '../app/models/Student';
 import User from '../app/models/User';
@@ -12,7 +13,7 @@ import User from '../app/models/User';
 import databseConfig from '../config/database';
 
 // Create array of models
-const models = [Checkin, Enrollment, Plan, Student, User];
+const models = [Checkin, Enrollment, HelpOrder, Plan, Student, User];
 
 class Database {
   constructor() {
