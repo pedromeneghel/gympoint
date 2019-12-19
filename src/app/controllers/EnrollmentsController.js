@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { addMonths, parseISO } from 'date-fns';
+import { addMonths, parseISO, format } from 'date-fns';
 import { Op } from 'sequelize';
 import Enrollment from '../models/Enrollment';
 import Plan from '../models/Plan';
@@ -245,13 +245,7 @@ class EnrollmentsController {
      */
     const pricePlan = Number(plan.price) * Number(plan.duration);
 
-    const {
-      sudent_id,
-      plan_id,
-      start_date,
-      end_date,
-      price,
-    } = await Enrollment.update(
+    await Enrollment.update(
       {
         student_id: studentId,
         plan_id: planId,
@@ -265,11 +259,11 @@ class EnrollmentsController {
     );
 
     return res.json({
-      sudent_id,
-      plan_id,
-      start_date,
-      end_date,
-      price,
+      student_id: studentId,
+      plan_id: planId,
+      start_date: startDate,
+      end_date: format(endDate, 'yyyy-MM-dd'),
+      price: pricePlan,
     });
   }
 }
