@@ -43,7 +43,7 @@ class EnrollmentsController {
     }
 
     const enrollments = await Enrollment.findAll({
-      attributes: ['id', 'start_date', 'end_date', 'price'],
+      attributes: ['id', 'start_date', 'end_date', 'price', 'active'],
       limit: 5,
       offset: (page - 1) * 5,
       include: [
