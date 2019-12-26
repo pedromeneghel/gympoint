@@ -37,11 +37,11 @@ routes.get(
 routes.use(authMiddleware);
 
 // Enrollments
-routes.get('/enrollment', EnrollmentsController.index);
-routes.get('/enrollment/:idEnrollment', EnrollmentsController.show);
-routes.post('/enrollment', EnrollmentsController.store);
-routes.put('/enrollment/:idEnrollment', EnrollmentsController.update);
-routes.delete('/enrollment/:idEnrollment', EnrollmentsController.destroy);
+routes.get('/enrollments', EnrollmentsController.index);
+routes.get('/enrollments/:idEnrollment', EnrollmentsController.show);
+routes.post('/enrollments', EnrollmentsController.store);
+routes.put('/enrollments/:idEnrollment', EnrollmentsController.update);
+routes.delete('/enrollments/:idEnrollment', EnrollmentsController.destroy);
 
 // Students
 routes.get('/students', StudentsController.index);
