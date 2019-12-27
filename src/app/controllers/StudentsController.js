@@ -1,9 +1,10 @@
 import * as Yup from 'yup';
+import { Op } from 'sequelize';
 import Student from '../models/Student';
 
 class StudentsController {
   async index(req, res) {
-    const { page = 1 } = req.query;
+    const { page = 1, q = '%' } = req.query;
 
     const schema = Yup.object().shape({
       page: Yup.number().integer(),
@@ -14,6 +15,11 @@ class StudentsController {
     }
 
     const students = await Student.findAll({
+      where: {
+        name: {
+          [Op.substring]: q,
+        },
+      },
       order: ['name'],
       attributes: ['id', 'name', 'email', 'age', 'weight', 'height'],
       limit: 5,
