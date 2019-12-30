@@ -1,8 +1,32 @@
 import * as Yup from 'yup';
 import { Op } from 'sequelize';
 import Student from '../models/Student';
+import Enrollment from '../models/Enrollment';
 
 class StudentsController {
+  async destroy(req, res) {
+    const { idStudent } = req.params;
+
+    // Checking if the student have active enrollment
+    const enrollments = await Enrollment.findAll({
+      where: { student_id: idStudent },
+    });
+
+    if (enrollments.lenght > 0) {
+      return res
+        .status(401)
+        .json({ error: 'There is registration for this student.' });
+    }
+
+    await Student.destroy({
+      where: { id: idStudent },
+    }).catch(() => {
+      return res.status(400).json({ error: 'Could not delete the student.' });
+    });
+
+    return res.json();
+  }
+
   async index(req, res) {
     const { page = 1, q = '%' } = req.query;
 

@@ -6,16 +6,15 @@ class PlansController {
     const { idPlan } = req.params;
 
     // Checking if there are users in the plan
-    /**
-     * const users = await Plan.findAll({
+    const users = await Plan.findAll({
       where: { id: idPlan },
     });
 
-    if (users) {
+    if (users.lenght > 0) {
       return res
         .status(401)
         .json({ error: 'There are users in the plan. Unable to delete.' });
-    } */
+    }
 
     await Plan.destroy({
       where: { id: idPlan },

@@ -48,6 +48,7 @@ routes.get('/students', StudentsController.index);
 routes.get('/students/:idStudent', StudentsController.show);
 routes.post('/students', StudentsController.store);
 routes.put('/students/:idStudent', StudentsController.update);
+routes.delete('/students/:idStudent', StudentsController.destroy);
 
 // Help orders - gym access
 routes.get('/help-orders', HelpOrdersGymController.index);
@@ -58,5 +59,6 @@ routes.get('/plans', PlansController.index);
 routes.get('/plans/:idPlan', PlansController.show);
 routes.post('/plans', PlansController.store);
 routes.put('/plans/:idPlan', PlansController.update);
+routes.delete('/plans/:idPlan', PlansController.destroy);
 
 export default routes;
