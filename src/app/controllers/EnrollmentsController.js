@@ -85,7 +85,7 @@ class EnrollmentsController {
         {
           model: Plan,
           as: 'plan',
-          attributes: ['id', 'title'],
+          attributes: ['id', 'title', 'duration', 'price'],
         },
       ],
     });
